@@ -1,0 +1,22 @@
+{
+  "name": "chapdel/notchrelay-api",
+  "description": "Notch Relay API wrapper",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.3",
+    "php-curl-class/php-curl-class": "^8.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "Chapdel\\NotchRelay\\": "src"
+    }
+  },
+  "homepage": "https://github.com/chapdel/notchrelay-api",
+  "authors": [
+    {
+      "name": "Chapdel KAMGA",
+      "email": "me@chapdel.xyz",
+      "homepage": "http://chapdel.xyz"
+    }
+  ]
+}
