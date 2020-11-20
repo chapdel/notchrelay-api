@@ -1,4 +1,4 @@
-# MailChimp API
+# Notch Relay API
 
 Notch Relay API wrapper
 
