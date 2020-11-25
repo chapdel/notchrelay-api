@@ -11,12 +11,14 @@
       "Chapdel\\NotchRelay\\": "src"
     }
   },
-  "homepage": "https://github.com/chapdel/notchrelay-api",
+  "homepage": "https://notchrelay.xyz/docs",
   "authors": [
     {
       "name": "Chapdel KAMGA",
       "email": "me@chapdel.xyz",
       "homepage": "http://chapdel.xyz"
     }
-  ]
+  ],
+  "prefer-stable": true,
+    "minimum-stability": "dev"
 }

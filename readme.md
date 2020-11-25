@@ -2,11 +2,11 @@
 
 Notch Relay API wrapper
 
-Requires PHP 5.3 and hightler.
+Requires PHP 5.3 and higher.
 
 ## Installation
 
-Install mnotchrelay-api using Composer:
+Install notchrelay-api using Composer:
 
 ```
 composer require chapdel/notchrelay-api
@@ -32,7 +32,7 @@ Subscribe someone to a list (with `subscribe` method):
 ```php
 $list_id = '1234346';
 
-$result = $notchrelay->subscribe('abc@example.com', $list_id);
+$result = $notchrelay->subscribe($list_id, 'abc@example.com');
 
 print_r($result);
 ```
@@ -42,7 +42,7 @@ Unsubscribe someone to a list (with `unsubscribe` method):
 ```php
 $list_id = '1234346';
 
-$result = $notchrelay->unsubscribe('abc@example.com', $list_id);
+$result = $notchrelay->unsubscribe($list_id,'abc@example.com');
 
 print_r($result);
 ```
@@ -52,7 +52,21 @@ Subscribe or update someone to a list (with `subscribeOrUpdate` method):
 ```php
 $list_id = '1234346';
 
-$result = $notchrelay->unsubscribe('abc@example.com', $list_id);
+$result = $notchrelay->subscribeOrUpdate`($list_id, 'abc@example.com', [
+    'first_name' => 'KAMGA',
+    'last_name' => 'Chapdel'
+]);
+
+print_r($result);
+```
+
+
+All subscribers in list (with `subscribers` method):
+
+```php
+$list_id = '1234346';
+
+$result = $notchrelay->subscribers($list_id);
 
 print_r($result);
 ```
@@ -61,4 +75,4 @@ print_r($result);
 
 This is a fairly simple wrapper, but it has been made much better by contributions from those using it. If you'd like to suggest an improvement, please raise an issue to discuss it before making your pull request.
 
-Pull requests for bugs are more than welcome - please explain the bug you're trying to fix in the message.
+Pull requests for bugs and features are more than welcome - please explain the bug you're trying to fix in the message.

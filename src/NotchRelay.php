@@ -16,8 +16,7 @@ class NotchRelay
 {
     public $curl;
     public $api_key;
-    public $base_url = 'http://notch-relay.test/api';
-    //public $base_url = 'http://notchrelay.xyz/api';
+    public $base_url = 'http://notchrelay.xyz/api';
 
     /**
      * Create a new instance
@@ -41,16 +40,17 @@ class NotchRelay
     /**
      * Susbcribe
      *
-     * @param string $email    Customer email
      * @param string $list_id    Notch Relay List ID
-     *
+     * @param string $email    Customer email
+     * @param array $data   others customer data
      * @return bool
      */
-    public function subscribe($email, $list_id)
+    public function subscribe($list_id, $email, $data = [])
     {
         $this->curl->post("$this->base_url/contacts", array(
             'email' => $email,
             'uid' => $list_id,
+            'data' => $data
         ));
 
         if ($this->curl->error) {
@@ -69,11 +69,12 @@ class NotchRelay
      *
      * @return bool
      */
-    public function subscribeOrUpdate($email, $list_id)
+    public function subscribeOrUpdate($list_id, $email, $data = [])
     {
         $this->curl->put("$this->base_url/contacts", array(
             'email' => $email,
             'uid' => $list_id,
+            'data' => $data
         ));
 
         if ($this->curl->error) {
@@ -91,7 +92,7 @@ class NotchRelay
      *
      * @return bool
      */
-    public function unsubscribe($email, $list_id)
+    public function unsubscribe($list_id, $email)
     {
         $this->curl->delete("$this->base_url/contacts", array(
             'email' => $email,
@@ -104,4 +105,27 @@ class NotchRelay
 
         return true;
     }
+
+    /**
+     * Subscribers
+     *
+     * @param string $list_id    Notch Relay List ID
+     *
+     * @return bool
+     */
+    public function subscribers($list_id)
+    {
+        $this->curl->get("$this->base_url/lists/$list_id");
+
+        if ($this->curl->error) {
+            return false;
+        }
+        return $this->curl->response;
+    }
 }
+
+require_once __DIR__. '/../vendor/autoload.php';
+
+$notch = new NotchRelay('ApIHUrnaUgnQ98NC67QKKHbbGlOyvEsdlOPMEH10');
+
+$notch->subscribe('Jeqne7TGL', 'chapdel@mail.com');
